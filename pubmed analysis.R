@@ -77,42 +77,4 @@ p2
 
 
 
-library(qdap)
-myFunc<-function(argument){
-  articles1<-data.frame('Abstract'=AbstractText(fetch), 'Year'=YearPubmed(fetch))
-  abstracts1<-articles1[which(articles1$Year==argument),]
-  abstracts1<-data.frame(abstracts1)
-  abstractsOnly<-as.character(abstracts1$Abstract)
-  abstractsOnly<-paste(abstractsOnly, sep="", collapse="")
-  abstractsOnly<-as.vector(abstractsOnly)
-  abstractsOnly<-strip(abstractsOnly)
-  stsp<-rm_stopwords(abstractsOnly, stopwords = qdapDictionaries::Top100Words)
-  ord<-as.data.frame(table(stsp))
-  ord<-ord[order(ord$Freq, decreasing=TRUE),]
-  head(ord,20)
-}
-
-
-oTen<-myFunc(2010)
-oEleven<-myFunc(2011)
-oTwelve<-myFunc(2012)
-oThirteen<-myFunc(2013)
-oFourteen<-myFunc(2014)
-oFifteen<-myFunc(2015)
-oSixteen<-myFunc(2016)
-oSeventeen<-myFunc(2017)
-oEighteen<-myFunc(2018)
-oNineteenn<-myFunc(2019)
-
-all<-cbind(oSix, oSeven)
-names(all)<-c("2006","freq","2007","freq")
-
-all
-
-
-
-
-
-
-
 
